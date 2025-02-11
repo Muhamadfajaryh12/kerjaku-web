@@ -2,10 +2,8 @@ import { BsSearch } from "react-icons/bs";
 
 const Searchbar = ({ style }) => {
   return (
-    <div
-      className={`rounded-md bg-gray-200 flex gap-2 p-2 items-center ${style}`}
-    >
-      <BsSearch size={15} />
+    <div className={`rounded-sm  border flex gap-2 p-1 items-center ${style}`}>
+      <BsSearch size={20} />
       <input
         type="text"
         className="w-full focus:outline-0"

@@ -2,15 +2,30 @@ import CardVacancy from "../../components/common/CardVacancy";
 import Searchbar from "../../components/common/Searchbar";
 import Sidebar from "../../components/navigation/Sidebar";
 import LayoutJobSeeker from "../../layouts/LayoutJobSeeker";
+import Select from "react-select";
 
+import dataDaerah from "../../data/data_daerah.json";
 const LowonganKerjaPage = () => {
+  let options = [];
+  dataDaerah.map((item) =>
+    options.push({ value: item.kota, label: item.kota })
+  );
+
   return (
     <LayoutJobSeeker>
-      <div className="flex gap-2">
-        <Searchbar style="grow-4" />
-        <Searchbar style="grow-4" />
+      <div className="flex gap-2 items-center">
+        <div className="grow-5">
+          <Searchbar />
+        </div>
+        <div className="grow-3">
+          <Select
+            options={options}
+            className="bg-red-200"
+            placeholder="Pilih Kota"
+          />
+        </div>
         {/* <ButtonPrimary title={"Cari"} /> */}
-        <button className="uppercase bg-blue-400 text-white font-semibold p-2 text-sm rounded-sm  grow-3">
+        <button className="uppercase bg-blue-400 text-white font-semibold p-2 text-sm rounded-sm  grow-2">
           Cari
         </button>
       </div>
