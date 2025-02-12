@@ -24,6 +24,10 @@ const CreateProfileCompany = () => {
               <Select options={optionsKota} />
             </div>
           </div>
+          <div className="grid grid-cols-3 gap-2">
+            <TextInput title={"Jumlah Karyawan"} />
+            <TextInput title={"Website Perusahaan"} />
+          </div>
         </form>
       </div>
     </LayoutEmployer>
