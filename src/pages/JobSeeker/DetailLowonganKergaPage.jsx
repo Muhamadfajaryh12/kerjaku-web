@@ -1,7 +1,6 @@
-import React from "react";
 import LayoutJobSeeker from "../../layouts/LayoutJobSeeker";
-import { MdMoney, MdSchool, MdTimer, MdWork } from "react-icons/md";
-import { FaDollarSign, FaTimes } from "react-icons/fa";
+import { MdSchool, MdWork } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa";
 import { BsBuilding, BsClock, BsHourglass } from "react-icons/bs";
 import CardVacancy from "../../components/common/CardVacancy";
 
