@@ -4,7 +4,7 @@ import CardCompany from "../../components/common/CardCompany";
 
 const CompanyVacancy = () => {
   return (
-    <LayoutJobSeeker>
+    <>
       <div className="flex gap-2">
         <Searchbar style="grow-4" />
         <Searchbar style="grow-4" />
@@ -22,7 +22,7 @@ const CompanyVacancy = () => {
         <CardCompany /> <CardCompany /> <CardCompany /> <CardCompany />
         <CardCompany />
       </div>
-    </LayoutJobSeeker>
+    </>
   );
 };
 export default CompanyVacancy;

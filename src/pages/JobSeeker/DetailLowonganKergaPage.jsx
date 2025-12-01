@@ -6,7 +6,7 @@ import CardVacancy from "../../components/common/CardVacancy";
 
 const DetailLowonganKergaPage = () => {
   return (
-    <LayoutJobSeeker>
+    <>
       <div className="flex max-w-7xl mx-auto gap-4">
         <div className="grow-8 shadow-sm rounded-sm p-4">
           <div className="flex gap-5 items-start">
@@ -90,7 +90,7 @@ const DetailLowonganKergaPage = () => {
           <CardVacancy />
         </div>
       </div>
-    </LayoutJobSeeker>
+    </>
   );
 };
 

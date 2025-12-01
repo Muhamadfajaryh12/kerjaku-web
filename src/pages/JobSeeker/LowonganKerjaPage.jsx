@@ -12,7 +12,7 @@ const LowonganKerjaPage = () => {
   );
 
   return (
-    <LayoutJobSeeker>
+    <>
       <div className="flex gap-2 items-center">
         <div className="grow-5">
           <Searchbar />
@@ -39,7 +39,7 @@ const LowonganKerjaPage = () => {
           </div>
         </div>
       </div>
-    </LayoutJobSeeker>
+    </>
   );
 };
 
