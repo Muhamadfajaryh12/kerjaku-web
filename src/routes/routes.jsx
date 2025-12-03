@@ -3,6 +3,7 @@ import LayoutJobSeeker from "../layouts/LayoutJobSeeker";
 import LowonganKerjaPage from "../pages/JobSeeker/LowonganKerjaPage";
 import DetailLowonganKergaPage from "../pages/JobSeeker/DetailLowonganKergaPage";
 import CompanyVacancy from "../pages/JobSeeker/CompanyVacancy";
+import ProfileJobSeeker from "../pages/JobSeeker/ProfileJobSeeker";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "perusahaan",
         element: <CompanyVacancy />,
+      },
+      {
+        path: "profile",
+        element: <ProfileJobSeeker />,
       },
     ],
   },
