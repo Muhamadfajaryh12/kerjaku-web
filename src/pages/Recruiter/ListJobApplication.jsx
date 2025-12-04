@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import CardVacancy from "../../components/common/CardVacancy";
-import ButtonPrimary from "../../components/form_component/ButtonPrimary";
 import LayoutEmployer from "../../layouts/LayoutEmployer";
 
 const ListJobApplication = () => {

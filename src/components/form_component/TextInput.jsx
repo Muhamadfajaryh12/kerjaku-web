@@ -1,7 +1,7 @@
 const TextInput = ({ title, props }) => {
   return (
     <div className="my-2">
-      <label htmlFor="" className="block text-sm opacity-90">
+      <label htmlFor="" className="block text-sm text-gray-800 font-semibold">
         {title}
       </label>
       <input

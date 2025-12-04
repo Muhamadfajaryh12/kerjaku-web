@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FormDataDiri from "../../components/form_component/FormDataDiri";
 import FormPendidikan from "../../components/form_component/FormPendidikan";
 import FormPengalaman from "../../components/form_component/FormPengalaman";
+import FormSertifikasi from "../../components/form_component/FormSertifikasi";
+import FormBahasa from "../../components/form_component/FormBahasa";
 
 const dataNavigation = [
   {
@@ -34,6 +36,10 @@ const ProfileJobSeeker = () => {
         return setComponent(<FormPendidikan />);
       case "pengalaman":
         return setComponent(<FormPengalaman />);
+      case "sertifikasi":
+        return setComponent(<FormSertifikasi />);
+      case "bahasa":
+        return setComponent(<FormBahasa />);
     }
   };
   return (
@@ -56,9 +62,7 @@ const ProfileJobSeeker = () => {
           ))}
         </ul>
       </div>
-      <div className="w-full  p-4 rounded-md border border-gray-300">
-        {component}
-      </div>
+      <div className="w-full ">{component}</div>
     </div>
   );
 };
