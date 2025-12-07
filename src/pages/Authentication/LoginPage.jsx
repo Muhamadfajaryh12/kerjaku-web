@@ -20,7 +20,7 @@ const LoginPage = () => {
 
         <p className="text-sm my-2 text-center">
           Belum memiliki akun?{" "}
-          <Link to={"/daftar"} className="text-blue-500 font-bold">
+          <Link to={"/register"} className="text-blue-500 font-bold">
             Daftar
           </Link>
         </p>

@@ -7,6 +7,10 @@ import ProfileJobSeeker from "../pages/JobSeeker/ProfileJobSeeker";
 import LayoutEmployer from "../layouts/LayoutEmployer";
 import ListJobApplication from "../pages/Recruiter/ListJobApplication";
 import DetailJobApplication from "../pages/Recruiter/DetailJobApplication";
+import LoginPage from "../pages/Authentication/LoginPage";
+import RegisterPage from "../pages/Authentication/RegisterPage";
+import CreateJob from "../pages/Recruiter/CreateJob";
+import JobVacancyRecruiter from "../pages/Recruiter/JobVacancyRecruiter";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +47,23 @@ const router = createBrowserRouter([
         path: "application/user",
         element: <DetailJobApplication />,
       },
+      {
+        path: "job",
+        element: <JobVacancyRecruiter />,
+      },
+      {
+        path: "job/form",
+        element: <CreateJob />,
+      },
     ],
+  },
+  {
+    path: "login",
+    element: <LoginPage />,
+  },
+  {
+    path: "register",
+    element: <RegisterPage />,
   },
 ]);
 

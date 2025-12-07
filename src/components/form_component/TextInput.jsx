@@ -1,4 +1,5 @@
-const TextInput = ({ title, props }) => {
+import react from "react";
+const TextInput = ({ title, ...props }) => {
   return (
     <div className="my-2">
       <label htmlFor="" className="block text-sm text-gray-800 font-semibold">

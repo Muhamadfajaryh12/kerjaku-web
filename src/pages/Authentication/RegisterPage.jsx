@@ -21,7 +21,7 @@ const RegisterPage = () => {
 
         <p className="text-sm my-2 text-center">
           Sudah memiliki akun?{" "}
-          <Link to={"/masuk"} className="text-blue-500 font-bold">
+          <Link to={"/login"} className="text-blue-500 font-bold">
             Masuk
           </Link>
         </p>
