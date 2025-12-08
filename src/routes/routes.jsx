@@ -11,6 +11,7 @@ import LoginPage from "../pages/Authentication/LoginPage";
 import RegisterPage from "../pages/Authentication/RegisterPage";
 import CreateJob from "../pages/Recruiter/CreateJob";
 import JobVacancyRecruiter from "../pages/Recruiter/JobVacancyRecruiter";
+import ListApplicant from "../pages/Recruiter/Applicant/ListApplicant";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "job/form",
         element: <CreateJob />,
+      },
+      {
+        path: "job/applicant",
+        element: <ListApplicant />,
       },
     ],
   },

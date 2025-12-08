@@ -5,9 +5,12 @@ import App from "./App.jsx";
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import "react-select-search/style.css";
 import router from "./routes/routes.jsx";
+import { ModalProvider } from "./context/ModalContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ModalProvider>
+      <RouterProvider router={router} />
+    </ModalProvider>
   </StrictMode>
 );

@@ -1,6 +1,9 @@
 import React from "react";
 import BreadCrumb from "../../components/common/BreadCrumb";
 import DataTable from "react-data-table-component";
+import { Link } from "react-router-dom";
+import { useModal } from "../../context/ModalContext";
+import ModalDelete from "../../components/modal/ModalDelete";
 
 const data = [
   {
@@ -12,9 +15,15 @@ const data = [
   },
 ];
 const JobVacancyRecruiter = () => {
+  const { openModal } = useModal();
   return (
     <div>
-      <BreadCrumb text={["Job", "List"]} />
+      <BreadCrumb text={["Lowongan", "Tabel"]} />
+      <Link to={"/recruiter/job/form"}>
+        <button className="p-2 rounded-sm bg-blue-800 text-white my-2 text-sm font-semibold uppercase">
+          Buat Lowongan
+        </button>
+      </Link>
       <DataTable
         data={data}
         columns={[
@@ -35,16 +44,23 @@ const JobVacancyRecruiter = () => {
             grow: 2,
             cell: (row) => (
               <div className="flex gap-2 items-center">
-                <button className="bg-blue-800 text-white p-2 rounded-sm text-xs uppercase font-semibold">
-                  Lihat Pelamar
-                </button>
+                <Link to="/recruiter/job/applicant">
+                  <button className="bg-blue-800 text-white p-2 rounded-sm text-xs uppercase font-semibold">
+                    Lihat Pelamar
+                  </button>
+                </Link>
                 <button className="bg-blue-800 text-white p-2 rounded-sm text-xs uppercase font-semibold">
                   Lihat Lowongan
                 </button>
-                <button className="bg-orange-600 text-white p-2 rounded-sm text-xs uppercase font-semibold">
-                  Edit
-                </button>
-                <button className="bg-red-600 text-white p-2 rounded-sm text-xs uppercase font-semibold">
+                <Link to="/recruiter/job/form">
+                  <button className="bg-orange-600 text-white p-2 rounded-sm text-xs uppercase font-semibold">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  className="bg-red-600 text-white p-2 rounded-sm text-xs uppercase font-semibold"
+                  onClick={() => openModal(<ModalDelete />)}
+                >
                   Hapus
                 </button>
               </div>
