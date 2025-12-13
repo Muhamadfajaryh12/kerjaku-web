@@ -1,29 +1,38 @@
 import { BsBuilding } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { MdLogout, MdWork } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
+const dataNavigation = [
+  {
+    name: "Lowongan Pekerjaan",
+    link: "/recruiter/job",
+    icon: <MdWork size={20} />,
+  },
+  {
+    name: "Profil Perusahaan",
+    link: "/recruiter/job/form",
+    icon: <BsBuilding size={20} />,
+  },
+];
 const SidebarEmployer = () => {
+  const path = useLocation();
+
   return (
     <div className="w-72 mih-h-screen shadow-sm p-4">
-      <div className="" id="profile-sidebar"></div>
-      <div className="p-2">
-        <div className="text-sm flex items-center gap-2 w-full p-2 bg-blue-500  text-white rounded-sm my-1">
-          <MdWork size={20} />
-          <Link to={"/perusahaan/daftar-lowongan-kerja"}>Daftar Lowongan </Link>
-        </div>
-        <div className="text-sm flex items-center gap-2 p-2 my-1 opacity-50 ">
-          <FaUser size={20} />
-          <Link to={"/perusahaan/daftar-pelamar"}>Daftar Pelamar </Link>
-        </div>
-        <div className="text-sm flex items-center gap-2 p-2 my-1 opacity-50 ">
-          <BsBuilding size={20} />
-          <Link to={"/"}>Profile Perusahaan </Link>
-        </div>
-        <div className="text-sm flex items-center gap-2 p-2 my-1 opacity-50 ">
-          <MdLogout size={20} />
-          <Link to={"/"}>Logout </Link>
-        </div>
+      <div>
+        {dataNavigation.map((item, index) => (
+          <Link to={item.link} key={index}>
+            <div
+              className={`p-2 my-2 text-sm rounded-sm flex gap-2 items-center ${
+                item.link == path.pathname ? "bg-blue-800 text-white" : ""
+              }`}
+            >
+              {item.icon}
+              <span>{item.name}</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

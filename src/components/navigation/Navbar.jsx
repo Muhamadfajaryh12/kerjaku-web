@@ -34,7 +34,7 @@ const Navbar = () => {
           ))}
         </div>
         <div className="flex gap-4 items-center">
-          <Link to={"/"}>Masuk</Link>
+          <Link to={"/login"}>Masuk</Link>
           <Link
             to={"/perusahaan/daftar"}
             className="border-2 border-blue-500 p-2 uppercase rounded-sm font-semibold text-blue-500 text-xs hover:text-white hover:bg-blue-500"

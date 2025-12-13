@@ -6,11 +6,14 @@ import { BrowserRouter, RouterProvider } from "react-router-dom";
 import "react-select-search/style.css";
 import router from "./routes/routes.jsx";
 import { ModalProvider } from "./context/ModalContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ModalProvider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </ModalProvider>
   </StrictMode>
 );

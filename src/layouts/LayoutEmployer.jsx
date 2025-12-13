@@ -1,9 +1,13 @@
-import React from "react";
 import NavbarEmployer from "../components/navigation/Employer/NavbarEmployer";
 import SidebarEmployer from "../components/navigation/Employer/SidebarEmployer";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const LayoutEmployer = () => {
+  const { state } = useAuth();
+  if (state.loading) return <div>Loading</div>;
+  if (!state.token) return <Navigate to="/login" />;
+  console.log(state);
   return (
     <div className="w-screen min-h-screen flex">
       <SidebarEmployer />
