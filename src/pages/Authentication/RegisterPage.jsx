@@ -14,7 +14,7 @@ const RegisterPage = () => {
       },
       body: JSON.stringify(value),
     });
-    console.log(value);
+    
     const response = await register.json();
     console.log(response);
   };
