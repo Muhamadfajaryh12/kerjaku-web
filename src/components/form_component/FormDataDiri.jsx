@@ -1,10 +1,11 @@
 import React from "react";
 import TextInput from "./TextInput";
+import { useForm } from "react-hook-form";
 
 const FormDataDiri = () => {
+  const { register, handleSubmit } = useForm();
   return (
     <div className="border border-gray-300 p-4 rounded-md">
-      {" "}
       <form className="">
         <TextInput title={"Nama Lengkap"} />
         <TextInput title={"Email Aktif"} />

@@ -14,9 +14,8 @@ const RegisterPage = () => {
       },
       body: JSON.stringify(value),
     });
-    
+
     const response = await register.json();
-    console.log(response);
   };
   return (
     <div className="flex justify-center items-center h-screen w-screen">
