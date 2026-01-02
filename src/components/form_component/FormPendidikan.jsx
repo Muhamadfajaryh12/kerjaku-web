@@ -1,7 +1,6 @@
 import React from "react";
 import TextInput from "./TextInput";
-import SubTitle from "../text/SubTitle";
-import CardEducation from "../card/CardEducation";
+
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import Select from "./Select";
@@ -70,10 +69,7 @@ const FormPendidikan = () => {
           </div>
         </form>
       </div>
-      <SubTitle title={"Pendidikan Anda"} />
-      <div className="flex flex-col gap-4">
-        <CardEducation />
-      </div>
+ 
     </>
   );
 };

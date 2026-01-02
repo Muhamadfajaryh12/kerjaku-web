@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import FormDataDiri from "../../components/form_component/FormDataDiri";
-import FormPendidikan from "../../components/form_component/FormPendidikan";
 import FormPengalaman from "../../components/form_component/FormPengalaman";
 import FormSertifikasi from "../../components/form_component/FormSertifikasi";
 import FormBahasa from "../../components/form_component/FormBahasa";
+import { useFetch } from "../../hooks/useFetch";
+import PendidikanSection from "../../components/section/PendidikanSection";
 
 const dataNavigation = [
   {
@@ -26,6 +27,7 @@ const dataNavigation = [
   },
 ];
 const ProfileJobSeeker = () => {
+  const { data } = useFetch(`${import.meta.env.VITE_API_URL}/profile`);
   const [state, setState] = useState("biodata");
   const [component, setComponent] = useState(<FormDataDiri />);
   const handleChangeComponent = (value) => {
@@ -33,7 +35,7 @@ const ProfileJobSeeker = () => {
       case "biodata":
         return setComponent(<FormDataDiri />);
       case "pendidikan":
-        return setComponent(<FormPendidikan />);
+        return setComponent(<PendidikanSection data={data.education} />);
       case "pengalaman":
         return setComponent(<FormPengalaman />);
       case "sertifikasi":
