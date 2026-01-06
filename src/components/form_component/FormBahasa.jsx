@@ -1,7 +1,5 @@
 import React from "react";
 import TextInput from "./TextInput";
-import SubTitle from "../text/SubTitle";
-import CardBahasa from "../card/CardBahasa";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 
@@ -46,10 +44,6 @@ const FormBahasa = () => {
             </button>
           </div>
         </form>
-      </div>
-      <SubTitle title={"Bahasa Anda"} />
-      <div className="flex flex-col">
-        <CardBahasa />
       </div>
     </>
   );

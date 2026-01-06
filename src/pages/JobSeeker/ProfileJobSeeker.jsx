@@ -5,6 +5,10 @@ import FormSertifikasi from "../../components/form_component/FormSertifikasi";
 import FormBahasa from "../../components/form_component/FormBahasa";
 import { useFetch } from "../../hooks/useFetch";
 import PendidikanSection from "../../components/section/PendidikanSection";
+import BahasaSection from "../../components/section/BahasaSection";
+import SertifikatSection from "../../components/section/SertifikatSection";
+import PengalamanSection from "../../components/section/PengalamanSection";
+import KeterampilanSection from "../../components/section/KeterampilanSection";
 
 const dataNavigation = [
   {
@@ -37,11 +41,15 @@ const ProfileJobSeeker = () => {
       case "pendidikan":
         return setComponent(<PendidikanSection data={data.education} />);
       case "pengalaman":
-        return setComponent(<FormPengalaman />);
+        return setComponent(<PengalamanSection data={data.experience} />);
       case "sertifikasi":
-        return setComponent(<FormSertifikasi />);
+        return setComponent(<SertifikatSection data={data.certification} />);
       case "bahasa":
-        return setComponent(<FormBahasa />);
+        return setComponent(<BahasaSection data={data.language} />);
+      case "keterampilan":
+        return setComponent(<KeterampilanSection data={data.skill} />);
+      default:
+        break;
     }
   };
   return (

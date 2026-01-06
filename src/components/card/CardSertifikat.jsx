@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCertificate, FaTrash } from "react-icons/fa";
 
-const CardSertifikat = () => {
+const CardSertifikat = ({ data }) => {
   return (
     <div className="border rounded-md p-2 border-gray-300 relative">
       <button className="absolute top-1 right-1 bg-red-600 p-2 rounded-md">
@@ -12,9 +12,11 @@ const CardSertifikat = () => {
           <FaCertificate size={30} className="text-blue-800" />
         </div>
         <div className="">
-          <h6 className="font-semibold">Nama Sertifikat</h6>
-          <h6 className="text-sm">Penerbit</h6>
-          <span className="text-sm">Berlaku sampai 2 Januari 2026</span>
+          <h6 className="font-semibold">{data?.certification_name}</h6>
+          <h6 className="text-sm">{data?.publisher}</h6>
+          <span className="text-sm">
+            Berlaku sampai {new Date(data?.effective_date).toLocaleDateString()}
+          </span>
         </div>
       </div>
     </div>

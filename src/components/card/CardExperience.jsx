@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 
-const CardExperience = () => {
+const CardExperience = ({ data }) => {
   return (
     <div className="border rounded-md p-2 border-gray-300 relative">
       <button className="absolute top-1 right-1 bg-red-600 p-2 rounded-md">
@@ -13,9 +13,14 @@ const CardExperience = () => {
           <MdWork size={40} className="text-blue-800" />
         </div>
         <div className="">
-          <h6 className="font-semibold">Posisi</h6>
-          <h6 className="text-sm">Nama Perusahaan</h6>
-          <span className="text-sm">1 Januari 2025 - 2 Januari 2026</span>
+          <h6 className="font-semibold">
+            {data.name_experience} - {data.position}
+          </h6>
+          <h6 className="text-sm">{data.name_company}</h6>
+          <span className="text-sm">
+            {new Date(data.date_start).toLocaleDateString()} -{"  "}
+            {new Date(data.date_end).toLocaleDateString()}
+          </span>
         </div>
       </div>
     </div>
