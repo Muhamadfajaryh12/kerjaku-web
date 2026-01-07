@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import FormDataDiri from "../../components/form_component/FormDataDiri";
-import FormPengalaman from "../../components/form_component/FormPengalaman";
-import FormSertifikasi from "../../components/form_component/FormSertifikasi";
-import FormBahasa from "../../components/form_component/FormBahasa";
 import { useFetch } from "../../hooks/useFetch";
 import PendidikanSection from "../../components/section/PendidikanSection";
 import BahasaSection from "../../components/section/BahasaSection";
@@ -31,23 +28,31 @@ const dataNavigation = [
   },
 ];
 const ProfileJobSeeker = () => {
-  const { data } = useFetch(`${import.meta.env.VITE_API_URL}/profile`);
-  const [state, setState] = useState("biodata");
-  const [component, setComponent] = useState(null);
-  const handleChangeComponent = (value) => {
-    switch (value) {
+  const { data, DeleteData, AddedData } = useFetch(
+    `${import.meta.env.VITE_API_URL}/profile`
+  );
+  const [activeTab, setActiveTab] = useState("biodata");
+
+  const renderContent = () => {
+    switch (activeTab) {
       case "biodata":
-        return setComponent(<FormDataDiri data={data.profile} />);
+        return <FormDataDiri data={data?.profile} />;
       case "pendidikan":
-        return setComponent(<PendidikanSection data={data.education} />);
+        return (
+          <PendidikanSection
+            data={data?.education}
+            handleDelete={DeleteData}
+            handleAdded={AddedData}
+          />
+        );
       case "pengalaman":
-        return setComponent(<PengalamanSection data={data.experience} />);
+        return <PengalamanSection data={data?.experience} />;
       case "sertifikasi":
-        return setComponent(<SertifikatSection data={data.certification} />);
+        return <SertifikatSection data={data?.certification} />;
       case "bahasa":
-        return setComponent(<BahasaSection data={data.language} />);
+        return <BahasaSection data={data?.language} />;
       case "keterampilan":
-        return setComponent(<KeterampilanSection data={data.skill} />);
+        return <KeterampilanSection data={data?.skill} />;
       default:
         break;
     }
@@ -60,11 +65,10 @@ const ProfileJobSeeker = () => {
             <li
               key={item.name}
               onClick={() => {
-                handleChangeComponent(item.name);
-                setState(item.name);
+                setActiveTab(item.name);
               }}
               className={`my-2 capitalize rounded-md p-2 text-sm font-semibold ${
-                state == item.name ? "bg-blue-500 text-white" : ""
+                activeTab == item.name ? "bg-blue-500 text-white" : ""
               }`}
             >
               {item.name}
@@ -72,7 +76,7 @@ const ProfileJobSeeker = () => {
           ))}
         </ul>
       </div>
-      <div className="w-full ">{component}</div>
+      <div className="w-full ">{renderContent()}</div>
     </div>
   );
 };

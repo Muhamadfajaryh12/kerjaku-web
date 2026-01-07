@@ -13,7 +13,7 @@ const dataPendidikan = [
   { name: "Sarjana" },
   { name: "Magister" },
 ];
-const FormPendidikan = () => {
+const FormPendidikan = ({ handleAdded }) => {
   const { state } = useAuth();
   const { register, handleSubmit } = useForm();
 
@@ -32,9 +32,8 @@ const FormPendidikan = () => {
       body: JSON.stringify(payload),
     });
 
-    const response = await submit.text();
-    console.log(response);
-    console.log("test");
+    const response = await submit.json();
+    handleAdded({ item: response.data, section: "education" });
   };
 
   return (
@@ -69,7 +68,6 @@ const FormPendidikan = () => {
           </div>
         </form>
       </div>
- 
     </>
   );
 };

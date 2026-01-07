@@ -29,8 +29,23 @@ export const useFetch = (url) => {
     fetching();
   }, []);
 
+  const DeleteData = ({ id, section }) => {
+    setData((prev) => ({
+      ...prev,
+      [section]: prev[section].filter((item) => item.id != id),
+    }));
+  };
+
+  const AddedData = ({ item, section }) => {
+    setData((prev) => ({
+      ...prev,
+      [section]: [...prev[section], item],
+    }));
+  };
   return {
     data,
     loading,
+    DeleteData,
+    AddedData,
   };
 };

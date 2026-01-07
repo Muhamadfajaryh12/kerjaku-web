@@ -2,7 +2,7 @@ import React from "react";
 import { MdWarning } from "react-icons/md";
 import { useModal } from "../../context/ModalContext";
 
-const ModalDelete = () => {
+const ModalDelete = ({ handleDelete }) => {
   const { closeModal } = useModal();
   return (
     <div className="p-4" onClick={(e) => e.stopPropagation()}>
@@ -20,7 +20,7 @@ const ModalDelete = () => {
         </button>
         <button
           className="p-2 bg-red-600 w-24 text-white rounded-sm "
-          onClick={closeModal}
+          onClick={() => handleDelete()}
         >
           Konfirmasi{" "}
         </button>

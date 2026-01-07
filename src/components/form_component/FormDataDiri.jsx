@@ -12,9 +12,7 @@ const FormDataDiri = ({ data }) => {
   const { register, handleSubmit, setValue } = useForm({
     name: "",
   });
-  console.log(data);
   useEffect(() => {
-    console.log(data);
     if (data) {
       setValue("name", data.name);
       setValue("email", data.email);
@@ -22,7 +20,7 @@ const FormDataDiri = ({ data }) => {
       setValue("gender", data.gender);
       setValue("phone", data.phone);
       setValue("summary", data.summary);
-      setPreview(data.photo);
+      setPreview(`${import.meta.env.VITE_IMAGE_URL}${data.photo}`);
     }
   }, [data]);
 
@@ -41,7 +39,7 @@ const FormDataDiri = ({ data }) => {
     formData.append("gender", value.gender);
     formData.append("phone", value.phone);
     formData.append("summary", value.summary);
-    formData.append("cv", value.cv);
+    formData.append("cv", value.cv[0]);
     formData.append("photo", image);
 
     const result = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
