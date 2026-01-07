@@ -33,11 +33,11 @@ const dataNavigation = [
 const ProfileJobSeeker = () => {
   const { data } = useFetch(`${import.meta.env.VITE_API_URL}/profile`);
   const [state, setState] = useState("biodata");
-  const [component, setComponent] = useState(<FormDataDiri />);
+  const [component, setComponent] = useState(null);
   const handleChangeComponent = (value) => {
     switch (value) {
       case "biodata":
-        return setComponent(<FormDataDiri />);
+        return setComponent(<FormDataDiri data={data.profile} />);
       case "pendidikan":
         return setComponent(<PendidikanSection data={data.education} />);
       case "pengalaman":

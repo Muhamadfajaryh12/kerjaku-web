@@ -63,7 +63,7 @@ const FormPendidikan = () => {
             {...register("graduate_date")}
           />
           <div className="flex justify-end" type="submit">
-            <button className="bg-blue-600 text-white p-2 rounded-md w-32 mt-2 ">
+            <button className="bg-blue-600 text-whi te p-2 rounded-md w-32 mt-2 ">
               Simpan
             </button>
           </div>

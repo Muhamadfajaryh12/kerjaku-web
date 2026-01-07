@@ -37,7 +37,7 @@ const Navbar = () => {
         </div>
         {state.token ? (
           <div>
-            <button>Logout </button>
+            <button>{}</button>
           </div>
         ) : (
           <div className="flex gap-4 items-center">
