@@ -3,15 +3,22 @@ import FormBahasa from "../form_component/FormBahasa";
 import SubTitle from "../text/SubTitle";
 import CardBahasa from "../card/CardBahasa";
 
-const BahasaSection = ({ data }) => {
+const BahasaSection = ({ data, handleDelete, handleAdded }) => {
   return (
     <div>
-      <FormBahasa />
+      <FormBahasa handleAdded={handleAdded} />
       <SubTitle title={"Bahasa Anda"} />
-      <div className="flex flex-col gap-2">
-        {data?.length > 0 &&
-          data?.map((item) => <CardBahasa key={item.id} data={item} />)}
-      </div>
+      {data?.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {data?.map((item) => (
+            <CardBahasa key={item.id} data={item} handleDelete={handleDelete} />
+          ))}
+        </div>
+      ) : (
+        <div className="bg-gray-100 p-4 rounded-md">
+          <h1>Anda belum memiliki Bahasa </h1>
+        </div>
+      )}
     </div>
   );
 };

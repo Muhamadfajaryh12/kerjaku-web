@@ -1,9 +1,9 @@
 import React from "react";
 import TextInput from "./TextInput";
-
+import Select from "./Select";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
-import Select from "./Select";
+import { useApi } from "../../hooks/useApi";
 
 const dataPendidikan = [
   { name: "SD" },
@@ -15,25 +15,23 @@ const dataPendidikan = [
 ];
 const FormPendidikan = ({ handleAdded }) => {
   const { state } = useAuth();
-  const { register, handleSubmit } = useForm();
-
-  const handleInsertEducation = async (data) => {
+  const { register, handleSubmit, reset } = useForm();
+  const { handleAPI } = useApi();
+  const handleInsertEducation = (data) => {
     const payload = {
       ...data,
       graduate_date: new Date(data.graduate_date).toISOString(),
     };
-
-    const submit = await fetch(`${import.meta.env.VITE_API_URL}/education`, {
+    handleAPI({
+      data: payload,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${state.token}`,
+      handleAction: (response) => {
+        handleAdded({ item: response.data, section: "education" });
       },
-      body: JSON.stringify(payload),
+      url: `${import.meta.env.VITE_API_URL}/education`,
+      token: state.token,
+      onSuccess: reset,
     });
-
-    const response = await submit.json();
-    handleAdded({ item: response.data, section: "education" });
   };
 
   return (
@@ -62,7 +60,7 @@ const FormPendidikan = ({ handleAdded }) => {
             {...register("graduate_date")}
           />
           <div className="flex justify-end" type="submit">
-            <button className="bg-blue-600 text-whi te p-2 rounded-md w-32 mt-2 ">
+            <button className="bg-blue-600 text-white p-2 rounded-md w-32 mt-2 ">
               Simpan
             </button>
           </div>

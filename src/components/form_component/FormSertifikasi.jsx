@@ -2,30 +2,27 @@ import React from "react";
 import TextInput from "./TextInput";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-const FormSertifikasi = () => {
+const FormSertifikasi = ({ handleAdded }) => {
   const { state } = useAuth();
-  const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit, reset } = useForm();
+  const { handleAPI } = useApi();
   const handleInsertCertification = async (data) => {
     const payload = {
       ...data,
       effective_date: new Date(data.effective_date).toISOString(),
     };
-    const submit = await fetch(
-      `${import.meta.env.VITE_API_URL}/certification`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${state.token}`,
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    const response = await submit.json();
-    console.log(response);
+    handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/certification`,
+      token: state.token,
+      data: payload,
+      method: "POST",
+      handleAction: (response) => {
+        handleAdded({ item: response.data, section: "certification" });
+      },
+      onSuccess: reset(),
+    });
   };
   return (
     <>

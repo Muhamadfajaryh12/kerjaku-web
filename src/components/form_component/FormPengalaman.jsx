@@ -3,6 +3,7 @@ import TextInput from "./TextInput";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
 import Select from "./Select";
+import { useApi } from "../../hooks/useApi";
 
 const dataPosition = [
   { name: "Magang" },
@@ -10,29 +11,30 @@ const dataPosition = [
   { name: "Manager" },
   { name: "Supervisor" },
 ];
-const FormPengalaman = () => {
+const FormPengalaman = ({ handleAdded }) => {
   const { state } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const { handleAPI } = useApi();
 
-  const handleInsertExperience = async (data) => {
+  const handleInsertExperience = (data) => {
     const payload = {
       ...data,
       date_start: new Date(data.date_start).toISOString(),
       date_end: new Date(data.date_end).toISOString(),
     };
 
-    const result = await fetch(`${import.meta.env.VITE_API_URL}/experience`, {
+    handleAPI({
+      data: payload,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${state.token}`,
+      handleAction: (response) => {
+        handleAdded({ item: response.data, section: "experience" });
       },
-      body: JSON.stringify(payload),
+      url: `${import.meta.env.VITE_API_URL}/experience`,
+      token: state.token,
+      onSuccess: reset,
     });
-
-    const response = await result.json();
-    console.log(response);
   };
+
   return (
     <div className="border border-gray-300 p-4 rounded-md">
       <form onSubmit={handleSubmit(handleInsertExperience)}>

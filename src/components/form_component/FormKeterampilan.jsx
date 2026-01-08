@@ -1,23 +1,24 @@
 import React from "react";
+import TextInput from "./TextInput";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
-import TextInput from "./TextInput";
+import { useApi } from "../../hooks/useApi";
 
-const FormKeterampilan = () => {
+const FormKeterampilan = ({ handleAdded }) => {
   const { state } = useAuth();
-  const { register, handleSubmit } = useForm();
-  const handleInsertKeterampilan = async (data) => {
-    const result = await fetch(`${import.meta.env.VITE_API_URL}/skill`, {
+  const { handleAPI } = useApi();
+  const { register, handleSubmit, reset } = useForm();
+  const handleInsertKeterampilan = (data) => {
+    handleAPI({
+      data: data,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${state.token}`,
+      handleAction: (response) => {
+        handleAdded({ item: response.data, section: "skill" });
       },
-      body: JSON.stringify(data),
+      token: state.token,
+      url: `${import.meta.env.VITE_API_URL}/skill`,
+      onSuccess: reset,
     });
-
-    const response = await result.json();
-    console.log(response);
   };
   return (
     <div className="border border-gray-300 p-4 rounded-md">

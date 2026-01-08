@@ -46,13 +46,37 @@ const ProfileJobSeeker = () => {
           />
         );
       case "pengalaman":
-        return <PengalamanSection data={data?.experience} />;
+        return (
+          <PengalamanSection
+            data={data?.experience}
+            handleDelete={DeleteData}
+            handleAdded={AddedData}
+          />
+        );
       case "sertifikasi":
-        return <SertifikatSection data={data?.certification} />;
+        return (
+          <SertifikatSection
+            data={data?.certification}
+            handleDelete={DeleteData}
+            handleAdded={AddedData}
+          />
+        );
       case "bahasa":
-        return <BahasaSection data={data?.language} />;
+        return (
+          <BahasaSection
+            data={data?.language}
+            handleDelete={DeleteData}
+            handleAdded={AddedData}
+          />
+        );
       case "keterampilan":
-        return <KeterampilanSection data={data?.skill} />;
+        return (
+          <KeterampilanSection
+            data={data?.skill}
+            handleAdded={AddedData}
+            handleDelete={DeleteData}
+          />
+        );
       default:
         break;
     }

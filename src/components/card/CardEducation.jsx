@@ -5,29 +5,22 @@ import { useModal } from "../../context/ModalContext";
 import ModalDelete from "../modal/ModalDelete";
 import { useAuth } from "../../context/AuthContext";
 import { useFetch } from "../../hooks/useFetch";
+import { useApi } from "../../hooks/useApi";
 
 const CardEducation = ({ data, handleDelete }) => {
   const { openModal, closeModal } = useModal();
+  const { handleAPI } = useApi();
   const { state } = useAuth();
-  const handleDeleteEducation = async () => {
-    try {
-      const result = await fetch(
-        `${import.meta.env.VITE_API_URL}/education/${data.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        }
-      );
-      const response = await result.json();
-      if (response) {
-        closeModal();
+  const handleDeleteEducation = () => {
+    handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/education/${data.id}`,
+      method: "DELETE",
+      token: state.token,
+      handleAction: (response) => {
         handleDelete({ id: response.id, section: "education" });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      },
+      onSuccess: closeModal(),
+    });
   };
   return (
     <div className="border rounded-md p-2 border-gray-300 relative">

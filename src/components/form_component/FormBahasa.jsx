@@ -2,22 +2,23 @@ import React from "react";
 import TextInput from "./TextInput";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-const FormBahasa = () => {
-  const { register, handleSubmit } = useForm();
+const FormBahasa = ({ handleAdded }) => {
+  const { register, handleSubmit, reset } = useForm();
   const { state } = useAuth();
-  const InsertLanguage = async (data) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/language`, {
+  const { handleAPI } = useApi();
+  const InsertLanguage = (data) => {
+    handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/language`,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${state.token}`,
+      data: data,
+      token: state.token,
+      handleAction: (response) => {
+        handleAdded({ item: response.data, section: "language" });
       },
-      body: JSON.stringify(data),
+      onSuccess: reset(),
     });
-
-    const result = await response.json();
-    console.log(result);
   };
   return (
     <>
