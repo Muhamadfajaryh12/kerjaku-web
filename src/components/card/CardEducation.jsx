@@ -28,7 +28,7 @@ const CardEducation = ({ data, handleDelete }) => {
         className="absolute top-1 right-1 bg-red-600 p-2 rounded-md"
         onClick={() =>
           openModal(<ModalDelete handleDelete={handleDeleteEducation} />)
-        }
+        } 
       >
         <FaTrash className="text-white" />
       </button>

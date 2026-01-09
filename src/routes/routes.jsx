@@ -13,6 +13,7 @@ import CreateJob from "../pages/Recruiter/CreateJob";
 import JobVacancyRecruiter from "../pages/Recruiter/JobVacancyRecruiter";
 import ListApplicant from "../pages/Recruiter/Applicant/ListApplicant";
 import ProfileCompany from "../pages/Recruiter/ProfileCompany";
+import AuthenticationLayout from "../layouts/AuthenticationLayout";
 
 const router = createBrowserRouter([
   {
@@ -69,11 +70,23 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <LoginPage />,
+    element: <AuthenticationLayout />,
+    children: [
+      {
+        index: true,
+        element: <LoginPage />,
+      },
+    ],
   },
   {
     path: "register",
-    element: <RegisterPage />,
+    element: <AuthenticationLayout />,
+    children: [
+      {
+        index: true,
+        element: <RegisterPage />,
+      },
+    ],
   },
 ]);
 

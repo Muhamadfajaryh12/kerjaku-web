@@ -2,23 +2,20 @@ import TextInput from "../../components/form_component/TextInput";
 import ButtonPrimary from "../../components/form_component/ButtonPrimary";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { meta } from "@eslint/js";
+import { useApi } from "../../hooks/useApi";
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
-
-  const handleRegister = async (value) => {
-    const register = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
+  const { handleAPI } = useApi();
+  const handleRegister = (data) => {
+    handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/register`,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(value),
+      data: data,
     });
-
-    const response = await register.json();
+    console.log(data);
   };
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div>
       <div className="w-96  border border-gray-300 rounded-lg shadow-sm p-4">
         <h2 className="font-bold text-4xl text-blue-700 text-center">
           Kerja<span className="text-yellow-400">Ku.</span>
@@ -28,10 +25,10 @@ const RegisterPage = () => {
         </p>
         <form className="my-4" onSubmit={handleSubmit(handleRegister)}>
           <TextInput
-            name="username"
+            name="email"
             type={"text"}
             title={"Email"}
-            {...register("username")}
+            {...register("email")}
           />
           <TextInput
             name={"password"}
@@ -39,12 +36,40 @@ const RegisterPage = () => {
             title={"Kata Sandi"}
             {...register("password")}
           />
+          <label
+            htmlFor=""
+            className="block text-sm text-gray-800 font-semibold"
+          >
+            Mendaftar sebagai
+          </label>
+          <div className="block my-1 ">
+            <input
+              type="radio"
+              value="perusahaan"
+              name="role"
+              {...register("role")}
+            />
+            <label htmlFor="" className="mx-1">
+              Perusahaan
+            </label>
+          </div>
+          <div className="block my-1 ">
+            <input
+              type="radio"
+              value="pencaker"
+              name="role"
+              {...register("role")}
+            />
 
+            <label htmlFor="" className="mx-1">
+              Pencaker
+            </label>
+          </div>
           <ButtonPrimary title={"masuk"} type="submit" />
         </form>
 
         <p className="text-sm my-2 text-center">
-          Sudah memiliki akun?{" "}
+          Sudah memiliki akun?
           <Link to={"/login"} className="text-blue-500 font-bold">
             Masuk
           </Link>

@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
+import Dropdown from "../common/Dropdown";
 
 const Navbar = () => {
   const params = useLocation();
@@ -14,9 +16,11 @@ const Navbar = () => {
     },
   ];
   const { state } = useAuth();
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="w-full border border-gray-200 p-4 shadow-sm">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <div className="flex items-center gap-5">
           <h2 className="font-bold text-3xl text-blue-700 text-center">
             Kerja<span className="text-yellow-400">Ku.</span>
@@ -36,8 +40,9 @@ const Navbar = () => {
           ))}
         </div>
         {state.token ? (
-          <div>
-            <button>{}</button>
+          <div className="mr-10">
+            <button onClick={() => setOpen(!open)}>asdasdsad</button>
+            <Dropdown open={open} setOpen={setOpen} />
           </div>
         ) : (
           <div className="flex gap-4 items-center">

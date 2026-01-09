@@ -18,14 +18,14 @@ const LoginPage = () => {
     });
 
     const response = await login.json();
-    console.log(response);
+
     if (response) {
       saveToken(response?.token);
       navigate("/recruiter");
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div>
       <div className="w-96 h-96 border border-gray-300 rounded-lg shadow-sm p-4">
         <h2 className="font-bold text-4xl text-blue-700 text-center">
           Kerja<span className="text-yellow-400">Ku.</span>

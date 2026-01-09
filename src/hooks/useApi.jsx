@@ -4,14 +4,16 @@ export const useApi = () => {
   const handleAPI = ({ url, data, token, method, handleAction, onSuccess }) => {
     const options = {
       method: method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: {},
     };
 
     if (data) {
-      options.headers["Content-Type"] = "application/json";
+      options.headers["Content-type"] = "application/json";
       options.body = JSON.stringify(data);
+    }
+
+    if (token) {
+      options.headers["Authorization"] = `Bearer ${token}`;
     }
 
     const response = fetch(url, options).then(async (res) => {
@@ -24,7 +26,7 @@ export const useApi = () => {
     toast.promise(response, {
       loading: "Loading...",
       success: (response) => {
-        handleAction(response);
+        handleAction?.(response);
         onSuccess?.();
         return response.message;
       },

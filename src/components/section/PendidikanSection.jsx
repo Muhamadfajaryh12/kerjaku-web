@@ -20,7 +20,7 @@ const PendidikanSection = ({ data, handleDelete, handleAdded }) => {
         </div>
       ) : (
         <div className="bg-gray-100 p-4 rounded-md">
-          <h1>Anda belum memiliki Pendidikan </h1>
+          <h1>Anda belum menambahkan Pendidikan </h1>
         </div>
       )}
     </div>
