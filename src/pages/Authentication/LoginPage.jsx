@@ -3,27 +3,26 @@ import ButtonPrimary from "../../components/form_component/ButtonPrimary";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
+  const { handleAPI } = useApi();
   const { saveToken } = useAuth();
   const navigate = useNavigate();
-  const handleLogin = async (value) => {
-    const login = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+  const handleLogin = (value) => {
+    handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/login`,
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
+      data: value,
+      handleAction: (response) => {
+        console.log(response);
+        !response.is_complete ? navigate("/profile") : navigate("/");
+        saveToken(response.token);
       },
-      body: JSON.stringify(value),
     });
-
-    const response = await login.json();
-
-    if (response) {
-      saveToken(response?.token);
-      navigate("/recruiter");
-    }
   };
+
   return (
     <div>
       <div className="w-96 h-96 border border-gray-300 rounded-lg shadow-sm p-4">
@@ -35,10 +34,10 @@ const LoginPage = () => {
         </p>
         <form className="my-4" onSubmit={handleSubmit(handleLogin)}>
           <TextInput
-            name="username"
+            name="email"
             type={"text"}
             title={"Email"}
-            {...register("username")}
+            {...register("email")}
           />
           <TextInput
             name="password"
