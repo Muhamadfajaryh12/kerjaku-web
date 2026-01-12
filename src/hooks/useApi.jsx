@@ -7,7 +7,9 @@ export const useApi = () => {
       headers: {},
     };
 
-    if (data) {
+    if (data instanceof FormData) {
+      options.body = data;
+    } else {
       options.headers["Content-type"] = "application/json";
       options.body = JSON.stringify(data);
     }

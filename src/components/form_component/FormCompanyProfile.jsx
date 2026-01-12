@@ -7,11 +7,12 @@ import { useAuth } from "../../context/AuthContext";
 
 import dataDaerah from "../../data/data_daerah.json";
 import dataTipePerusahaan from "../../data/data_tipe_perusahaan.json";
+import { useApi } from "../../hooks/useApi";
 const FormCompanyProfile = () => {
   const { state } = useAuth();
   const [preview, setPreview] = useState(null);
   const [image, setImage] = useState(null);
-
+  const { handleAPI } = useApi();
   const { register, handleSubmit } = useForm();
 
   const handlePreview = (file) => {
@@ -20,7 +21,7 @@ const FormCompanyProfile = () => {
     setImage(file);
   };
 
-  const handleInsertCompany = async (value) => {
+  const handleInsertCompany = (value) => {
     const formData = new FormData();
 
     formData.append("company_name", value.company_name);
@@ -30,16 +31,13 @@ const FormCompanyProfile = () => {
     formData.append("company_type", value.company_type);
     formData.append("photo", image);
 
-    const profile = await fetch(`${import.meta.env.VITE_API_URL}/company`, {
+    const result = handleAPI({
+      url: `${import.meta.env.VITE_API_URL}/company`,
+      token: state.token,
+      data: formData,
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${state.token}`,
-      },
-      body: formData,
     });
-    const response = await profile.json();
-
-    console.log(response);
+    console.log(result);
   };
 
   return (

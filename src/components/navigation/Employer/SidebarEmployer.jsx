@@ -11,7 +11,7 @@ const dataNavigation = [
   },
   {
     name: "Profil Perusahaan",
-    link: "/recruiter/job/form",
+    link: "/recruiter/company/form",
     icon: <BsBuilding size={20} />,
   },
 ];

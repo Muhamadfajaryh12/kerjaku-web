@@ -4,18 +4,13 @@ import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { useModal } from "../../context/ModalContext";
 import ModalDelete from "../../components/modal/ModalDelete";
+import { useAuth } from "../../context/AuthContext";
+import { useFetch } from "../../hooks/useFetch";
 
-const data = [
-  {
-    name: "position",
-    date_start: "12 Agusuts 2002",
-    date_end: "13 Agustsu 2020",
-    category: "Teknik",
-    type: "Magang",
-  },
-];
 const JobVacancyRecruiter = () => {
   const { openModal } = useModal();
+  const { data } = useFetch(`${import.meta.env.VITE_API_URL}/company-vacancy`);
+  console.log(data);
   return (
     <div>
       <BreadCrumb text={["Lowongan", "Tabel"]} />
@@ -25,11 +20,11 @@ const JobVacancyRecruiter = () => {
         </button>
       </Link>
       <DataTable
-        data={data}
+        data={data || []}
         columns={[
           {
             name: "Position",
-            selector: (row) => row.name,
+            selector: (row) => row.name_vacancy,
           },
           {
             name: "Kategori",
@@ -38,6 +33,10 @@ const JobVacancyRecruiter = () => {
           {
             name: "Tipe",
             selector: (row) => row.type,
+          },
+          {
+            name: "Jumlah Pelamar",
+            selector: (row) => row.application_count,
           },
           {
             name: "Aksi",

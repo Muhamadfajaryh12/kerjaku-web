@@ -2,6 +2,7 @@ import NavbarEmployer from "../components/navigation/Employer/NavbarEmployer";
 import SidebarEmployer from "../components/navigation/Employer/SidebarEmployer";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const LayoutEmployer = () => {
   const { state } = useAuth();
@@ -17,6 +18,7 @@ const LayoutEmployer = () => {
           <Outlet />
         </div>
       </div>
+      <Toaster position="top-right" />
     </div>
   );
 };

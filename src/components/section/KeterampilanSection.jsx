@@ -1,4 +1,3 @@
-import React from "react";
 import FormKeterampilan from "../form_component/FormKeterampilan";
 import SubTitle from "../text/SubTitle";
 import { MdClose } from "react-icons/md";
@@ -22,7 +21,7 @@ const KeterampilanSection = ({ data, handleAdded, handleDelete }) => {
     <div>
       <FormKeterampilan handleAdded={handleAdded} />
       <SubTitle title={"Keterampilan Anda"} />
-      {data.length > 0 ? (
+      {data?.length > 0 ? (
         <div className="flex gap-2">
           {data.map((item) => (
             <div
