@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <LowonganKerjaPage />,
       },
       {
-        path: "lowongan-kerja",
+        path: "lowongan-kerja/:id",
         element: <DetailLowonganKergaPage />,
       },
       {

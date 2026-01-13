@@ -5,12 +5,14 @@ import LayoutJobSeeker from "../../layouts/LayoutJobSeeker";
 import Select from "react-select";
 
 import dataDaerah from "../../data/data_daerah.json";
+import { useFetch } from "../../hooks/useFetch";
 const LowonganKerjaPage = () => {
   let options = [];
   dataDaerah.map((item) =>
     options.push({ value: item.kota, label: item.kota })
   );
 
+  const { data } = useFetch(`${import.meta.env.VITE_API_URL}/vacancy`);
   return (
     <>
       <div className="flex gap-2 items-center">
@@ -33,9 +35,13 @@ const LowonganKerjaPage = () => {
         <Sidebar />
         <div className="grow-2">
           <div className=" grid grid-cols-3 gap-4 p-2 ">
-            <CardVacancy /> <CardVacancy />
-            <CardVacancy /> <CardVacancy />
-            <CardVacancy />
+            {data?.length > 0 ? (
+              data.map((item) => <CardVacancy key={item.id} data={item} />)
+            ) : (
+              <div>
+                <h1 className="text-center">Lowongan tidak tersedia</h1>
+              </div>
+            )}
           </div>
         </div>
       </div>
