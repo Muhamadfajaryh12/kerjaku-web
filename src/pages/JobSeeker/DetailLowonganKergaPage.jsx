@@ -6,13 +6,15 @@ import CardVacancy from "../../components/common/CardVacancy";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useCurrency } from "../../hooks/useCurrency";
+import { useModal } from "../../context/ModalContext";
+import ModalApply from "../../components/modal/ModalApply";
 
 const DetailLowonganKergaPage = () => {
   const params = useParams();
   const { data } = useFetch(
     `${import.meta.env.VITE_API_URL}/vacancy/${params.id}`
   );
-  console.log(data);
+  const { openModal } = useModal();
   return (
     <>
       <div className="flex max-w-7xl mx-auto gap-4">
@@ -55,8 +57,11 @@ const DetailLowonganKergaPage = () => {
                   {new Date(data?.data.date_end).toLocaleDateString()}
                 </h6>
               </div>
-              <button className="bg-blue-600 p-2 rounded-sm text-white font-semibold my-2">
-                Lamaran Cepat
+              <button
+                className="bg-blue-600 p-2 rounded-sm text-white font-semibold my-2"
+                onClick={() => openModal(<ModalApply />)}
+              >
+                Lamar
               </button>
             </div>
           </div>

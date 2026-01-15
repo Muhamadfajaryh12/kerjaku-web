@@ -6,7 +6,7 @@ import { useApi } from "../../hooks/useApi";
 import { useAuth } from "../../context/AuthContext";
 import ModalDelete from "../modal/ModalDelete";
 
-const CardExperience = ({ data, handleDelete }) => {
+const CardExperience = ({ data, handleDelete, isDelete = false }) => {
   const { openModal, closeModal } = useModal();
   const { handleAPI } = useApi();
   const { state } = useAuth();
@@ -25,14 +25,16 @@ const CardExperience = ({ data, handleDelete }) => {
 
   return (
     <div className="border rounded-md p-2 border-gray-300 relative">
-      <button
-        className="absolute top-1 right-1 bg-red-600 p-2 rounded-md"
-        onClick={() =>
-          openModal(<ModalDelete handleDelete={handleDeleteExperience} />)
-        }
-      >
-        <FaTrash className="text-white" />
-      </button>
+      {isDelete && (
+        <button
+          className="absolute top-1 right-1 bg-red-600 p-2 rounded-md"
+          onClick={() =>
+            openModal(<ModalDelete handleDelete={handleDeleteExperience} />)
+          }
+        >
+          <FaTrash className="text-white" />
+        </button>
+      )}
       <div className=" flex gap-2 items-center">
         <div className="bg-blue-200 p-2 rounded-md">
           <MdWork size={40} className="text-blue-800" />
